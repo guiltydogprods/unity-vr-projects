@@ -6456,7 +6456,7 @@ PrefabInstance:
     - target: {fileID: 598391952835505774, guid: 4f617974558ed3c47b74999559454d14,
         type: 3}
       propertyPath: m_Text
-      value: Welcome! My reality is your reality.
+      value: 'Frame Time: 13.88ms'
       objectReference: {fileID: 0}
     - target: {fileID: 598391952835505774, guid: 4f617974558ed3c47b74999559454d14,
         type: 3}
@@ -6486,7 +6486,7 @@ PrefabInstance:
     - target: {fileID: 1303775225309791923, guid: 4f617974558ed3c47b74999559454d14,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000224711917913146, guid: 4f617974558ed3c47b74999559454d14,
         type: 3}

@@ -10,12 +10,12 @@ public class KillTarget : MonoBehaviour
     public float timeToSelect = 3.0f;
     public int score;
 
-    Transform camera;
+    Transform localCamera;
     private float countDown;
 
     void Start()
     {
-        camera = Camera.main.transform;
+        localCamera = Camera.main.transform;
         score = 0;
         countDown = timeToSelect;
     }
@@ -23,7 +23,7 @@ public class KillTarget : MonoBehaviour
     void Update()
     {
         bool isHitting = false;
-        Ray ray = new Ray(camera.position, camera.rotation * Vector3.forward);
+        Ray ray = new Ray(localCamera.position, localCamera.rotation * Vector3.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
