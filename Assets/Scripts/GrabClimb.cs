@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-
-public class HandleScript : MonoBehaviour
+public class GrabClimb : MonoBehaviour
 {
-    public Transform handle;
-
     private XRSimpleInteractable interactable;
-    private Rigidbody rigidbody;
+    private ClimbController climbController;
     private bool isGrabbing;
     private Vector3 handPosition;
 
@@ -17,7 +14,7 @@ public class HandleScript : MonoBehaviour
     private void Start()
     {
         interactable = GetComponent<XRSimpleInteractable>();
-        rigidbody = GetComponent<Rigidbody>();
+        climbController = GetComponentInParent<ClimbController>();
         isGrabbing = false;
     }
 
@@ -25,6 +22,7 @@ public class HandleScript : MonoBehaviour
     {
         isGrabbing = true;
         handPosition = InteractorPosition();
+        climbController.Grab();
     }
 
     private Vector3 InteractorPosition()
@@ -45,18 +43,15 @@ public class HandleScript : MonoBehaviour
     {
         if (isGrabbing)
         {
+            Vector3 delta = handPosition - InteractorPosition();
+            climbController.Pull(delta);
             handPosition = InteractorPosition();
-            transform.position = handPosition;
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
         }
     }
 
     public void Release()
     {
         isGrabbing = false;
-        transform.position = handle.transform.position;
-        transform.rotation = handle.transform.rotation;
-//        rigidbody.isKinematic = false;
+        climbController.Release();
     }
 }
