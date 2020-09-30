@@ -7,9 +7,8 @@ public class ClimbController : MonoBehaviour
     public GameObject xrRig;
 //    [SerializeField] private GameObject xrRig;
 
-
     private int grabCount;
-//    private Rigidbody rigidbody;
+    private Rigidbody rigidbody;
     private float groundLevel;
 
     // Start is called before the first frame update
@@ -20,14 +19,14 @@ public class ClimbController : MonoBehaviour
             xrRig = GameObject.Find("XR Rig");
         }
         grabCount = 0;
-//        rigidbody = xrRig.GetComponent<Rigidbody>();
+        rigidbody = xrRig.GetComponent<Rigidbody>();
         groundLevel = xrRig.transform.position.y;
     }
 
     public void Grab()
     {
         grabCount++;
-//        rigidbody.isKinematic = true;
+        rigidbody.isKinematic = true;
     }
 
     public void Pull(Vector3 distance)
@@ -40,7 +39,7 @@ public class ClimbController : MonoBehaviour
         grabCount--;
         if (grabCount == 0)
         {
-//            rigidbody.isKinematic = false;
+            rigidbody.isKinematic = false;
         }
     }
 
@@ -52,7 +51,7 @@ public class ClimbController : MonoBehaviour
             Vector3 pos = xrRig.transform.position;
             pos.y = groundLevel;
             xrRig.transform.position = pos;
-//            rigidbody.isKinematic = true;
+            rigidbody.isKinematic = true;
         }
     }
 }

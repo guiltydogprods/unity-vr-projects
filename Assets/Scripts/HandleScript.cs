@@ -24,7 +24,13 @@ public class HandleScript : MonoBehaviour
     public void Grab()
     {
         isGrabbing = true;
+        rigidbody.isKinematic = true;
         handPosition = InteractorPosition();
+    }
+
+    public bool IsGrabbed
+    {
+        get { return isGrabbing; }
     }
 
     private Vector3 InteractorPosition()
@@ -47,16 +53,19 @@ public class HandleScript : MonoBehaviour
         {
             handPosition = InteractorPosition();
             transform.position = handPosition;
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
         }
     }
 
     public void Release()
     {
         isGrabbing = false;
+// CLR - Comment out these two lines to remove the Grabbable Handle position reset on release.  It feels nicer when letting go of the handle but doesn't reset the 
+//       grabbable handle position.  With these two lines in, the position is reset, but letting go of the door handle causes the door to move in a bad way. I'm sure
+//       it's fixable but requires a bit more work to figure out what is going on.
         transform.position = handle.transform.position;
         transform.rotation = handle.transform.rotation;
+//        rigidbody.velocity = Vector3.zero;
+//        rigidbody.angularVelocity = Vector3.zero;
 //        rigidbody.isKinematic = false;
     }
 }

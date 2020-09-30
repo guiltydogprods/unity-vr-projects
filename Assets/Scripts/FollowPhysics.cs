@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class FollowPhysics : MonoBehaviour
 {
-    public Transform target;
+    public GameObject target;
     private Rigidbody rb;
+    private HandleScript handleScript;
 
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        handleScript = target.GetComponent<HandleScript>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        rb.MovePosition(target.transform.position);
+//        if (handleScript.IsGrabbed == true)
+//        {
+            rb.MovePosition(target.transform.position);
+//        }
     }
 }
