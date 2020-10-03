@@ -22,8 +22,8 @@ public class HandleScript : MonoBehaviour
         interactable = GetComponent<XRSimpleInteractable>();
         rigidbody = GetComponent<Rigidbody>();
         isGrabbing = false;
-        applyFix = false;
-        text.text = "Fix not applied";
+        applyFix = true;
+        text.text = "Fix applied";
     }
 
     public void Grab()
@@ -91,9 +91,13 @@ public class HandleScript : MonoBehaviour
         {
             transform.position = handle.transform.position;
             transform.rotation = handle.transform.rotation;
+
+            Rigidbody rbHandle = handle.GetComponent<Rigidbody>();
+//            rigidbody.velocity = rbHandle.velocity;
+//            rigidbody.angularVelocity = rbHandle.angularVelocity;
+            rbHandle.velocity = Vector3.zero;
+            rbHandle.angularVelocity = Vector3.zero;
+//            rigidbody.isKinematic = false;
         }
-        //        rigidbody.velocity = Vector3.zero;
-        //        rigidbody.angularVelocity = Vector3.zero;
-        //        rigidbody.isKinematic = false;
     }
 }
